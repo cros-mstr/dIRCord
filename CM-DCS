@@ -1,0 +1,214 @@
+/**
+ * @name CM-DCS (CrosMaster - Discord Chat System)
+ * @description Bring CLI Magic to your discord client!
+ * @author cros-mstr
+ * @version 1.0.0
+ */
+/* TO ADD THIS: PRESS THE RAW BUTTON ON THE TOP RIGHT AND COPY THE LINK */
+/* Import a clean monospace font */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Source+Code+Pro:wght@400;700&display=swap');
+
+:root {
+    --font-primary: 'Source Code Pro', monospace;
+    --font-display: 'Source Code Pro', monospace;
+    --font-code: 'Source Code Pro', monospace;
+    
+    /* DOS-Style Pitch Black Backgrounds */
+    --background-primary: #000000;
+    --background-secondary: #000000;
+    --background-secondary-alt: #000000;
+    --background-tertiary: #000000;
+    --background-floating: #000000;
+    
+    /* Force all text variables to green shades */
+    --text-normal: #00ff00;
+    --text-muted: #00aa00;
+    --text-link: #00ff55;
+    --header-primary: #00ff00;
+    --header-secondary: #00aa00;
+    --interactive-normal: #00cc00;
+    --interactive-hover: #00ff00;
+    --interactive-active: #00ff00;
+    --interactive-muted: #004400;
+    --channels-default: #00cc00;
+    
+    --channeltextarea-background: #000000;
+}
+
+/* Base Theme Reset */
+* {
+    font-family: var(--font-primary) !important;
+    border-radius: 0px !important; /* IRC is sharp and square */
+    color: #00ff00 !important; /* Global fallback override to force green text everywhere */
+    background-color: transparent !important; /* Allows pitch black layers to inherit globally */
+    box-shadow: none !important;
+}
+
+/* Ensure main containers stay pitch black */
+body, 
+html, 
+[class^="app_"], 
+[class^="bg_"], 
+[class^="wrapper_"], 
+[class^="sidebar_"], 
+[class^="container_"], 
+[class^="chat_"], 
+[class^="scroller_"], 
+[class^="pageWrapper_"], 
+[class^="members_"] {
+    background-color: #000000 !important;
+}
+
+/* Exception for selection highlights so text stays readable when highlighted */
+::selection {
+    background: #004400 !important;
+    color: #00ff00 !important;
+}
+
+/* Hide Avatars in Chat for true IRC style */
+[class^="avatar_"], 
+[class^="avatarDecoration_"] {
+    display: none !important;
+}
+
+/* Compact Message Layout */
+[class^="message_"] {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-left: 0px !important;
+    background: #000000 !important;
+}
+
+/* Format Username and Message Inline */
+[class^="contents_"] {
+    display: inline-block;
+    width: 100%;
+}
+
+[class^="contents_"] [class^="header_"] {
+    display: inline;
+    margin-right: 5px;
+}
+
+/* Wrap username in brackets like <User> */
+[class^="username_"]::before {
+    content: "<";
+    color: #00aa00 !important;
+}
+[class^="username_"]::after {
+    content: ">";
+    color: #00aa00 !important;
+}
+
+[class^="username_"] {
+    display: inline !important;
+    font-weight: bold !important;
+    color: #00ff00 !important;
+}
+
+/* Timestamps */
+[class^="timestamp_"] {
+    color: #00aa00 !important;
+    font-size: 0.85rem !important;
+}
+
+/* Chat Input Box & Container Structure */
+[class^="form_"] {
+    padding: 0px !important; /* Removes padding around the entire bottom input area */
+    margin: 0px !important;
+    background-color: #000000 !important;
+}
+
+[class^="channelTextArea_"] {
+    background-color: #000000 !important;
+    border-top: 1px solid #004400 !important; /* DOS terminal dividing line */
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    margin-bottom: 0px !important; /* Flushes box to the absolute bottom */
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    width: 100% !important;
+}
+
+[class^="inner_"] {
+    background-color: #000000 !important;
+    padding-left: 10px !important; /* Standard IRC padding for neat text alignment */
+}
+
+/* Placeholder text color inside the input box */
+[class^="placeholder_"] {
+    color: #004400 !important;
+}
+
+/* User Profile Container (Bottom Left) */
+[class^="panels_"] {
+    border-top: 1px solid #004400 !important; /* DOS terminal dividing line */
+    background-color: #000000 !important;
+}
+
+[class^="container_"][class*="panels_"] {
+    margin: 0px !important;
+    padding: 0px 8px !important; /* Tightens padding to flush with the sidebar walls */
+    background-color: #000000 !important;
+}
+
+/* Change "Direct Messages" Text to "Buddies" */
+[class^="privateChannelsHeaderContainer_"] [class^="headerText_"] {
+    visibility: hidden;
+    position: relative;
+}
+[class^="privateChannelsHeaderContainer_"] [class^="headerText_"]::after {
+    content: "BUDDIES";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    letter-spacing: 0.5px;
+    color: #00aa00 !important;
+}
+
+/* Retro Gloss Effect Over Server Icons */
+[class^="guildIconContainer_"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* Covers the top half of the icon */
+    background: linear-gradient(to bottom, rgba(0, 255, 0, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none; /* Allows clicking through the gloss element */
+    z-index: 1;
+}
+[class^="guildIconContainer_"] {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hide Unnecessary UI Bloat (Gifts, GIFs, Stickers) */
+[aria-label="Send a gift"],
+[aria-label="Open GIF picker"],
+[aria-label="Open sticker picker"] {
+    display: none !important;
+}
+
+/* High Contrast/Muted Sidebar Elements */
+[class^="channel_"] [class^="link_"] {
+    border-left: 3px solid transparent;
+}
+[class^="channel_"].selected_ [class^="link_"] {
+    background-color: #002200 !important; /* Subtle DOS green highlight block */
+    border-left: 3px solid #00ff00;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+::-webkit-scrollbar-track {
+    background: #000000 !important;
+}
+::-webkit-scrollbar-thumb {
+    background: #004400 !important; /* Green custom scrollbar thumb */
+}
