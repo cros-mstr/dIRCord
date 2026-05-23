@@ -108,6 +108,37 @@
     padding: 0px 8px !important; /* Tightens padding to flush with the sidebar walls */
 }
 
+/* Change "Direct Messages" Text to "Buddies" */
+[class^="privateChannelsHeaderContainer_"] [class^="headerText_"] {
+    visibility: hidden;
+    position: relative;
+}
+[class^="privateChannelsHeaderContainer_"] [class^="headerText_"]::after {
+    content: "BUDDIES";
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Retro Gloss Effect Over Server Icons */
+[class^="guildIconContainer_"]::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%; /* Covers the top half of the icon */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none; /* Allows clicking through the gloss element */
+    z-index: 1;
+}
+[class^="guildIconContainer_"] {
+    position: relative;
+    overflow: hidden;
+}
+
 /* Hide Unnecessary UI Bloat (Gifts, GIFs, Stickers) */
 [aria-label="Send a gift"],
 [aria-label="Open GIF picker"],
@@ -135,3 +166,10 @@
 ::-webkit-scrollbar-thumb {
     background: #333 !important;
 }
+
+
+/* Custom Status Colors */
+rect[fill="#23a55a"], svg[tabindex="-1"] rect[fill="var(--status-online)"] { fill: #00ff00 !important; } /* Online -> Bright Matrix Green */
+rect[fill="#f0b232"], svg[tabindex="-1"] rect[fill="var(--status-idle)"] { fill: #ffaa00 !important; }   /* Idle -> Terminal Amber */
+rect[fill="#f23f43"], svg[tabindex="-1"] rect[fill="var(--status-dnd)"] { fill: #ff0055 !important; }    /* DND -> Crimson */
+rect[fill="#80848e"], svg[tabindex="-1"] rect[fill="var(--status-offline)"] { fill: #333333 !important; }/* Offline -> Low-vis Gray */
