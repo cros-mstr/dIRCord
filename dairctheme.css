@@ -1,0 +1,114 @@
+/**
+ * @name IRClassiCord
+ * @description Bring IRC Magic to your discord client!
+ * @author cros-mstr
+ * @version 1.0.0
+ */
+
+/* Import a clean monospace font */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Source+Code+Pro:wght@400;700&display=swap');
+
+:root {
+    --font-primary: 'Source Code Pro', monospace;
+    --font-display: 'Source Code Pro', monospace;
+    --font-code: 'Source Code Pro', monospace;
+    --background-primary: #000000;
+    --background-secondary: #111111;
+    --background-secondary-alt: #1a1a1a;
+    --background-tertiary: #0a0a0a;
+    --text-normal: #aaaaaa;
+    --text-muted: #666666;
+    --text-link: #00ffff;
+    --channeltextarea-background: #000000;
+}
+
+/* Base Theme Reset */
+* {
+    font-family: var(--font-primary) !important;
+    border-radius: 0px !important; /* IRC is sharp and square */
+}
+
+/* Hide Avatars in Chat for true IRC style */
+[class^="avatar_"], 
+[class^="avatarDecoration_"] {
+    display: none !important;
+}
+
+/* Compact Message Layout */
+[class^="message_"] {
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    margin-left: 0px !important;
+    background: transparent !important;
+}
+
+/* Format Username and Message Inline */
+[class^="contents_"] {
+    display: inline-block;
+    width: 100%;
+}
+
+[class^="contents_"] [class^="header_"] {
+    display: inline;
+    margin-right: 5px;
+}
+
+/* Wrap username in brackets like <User> */
+[class^="username_"]::before {
+    content: "<";
+    color: var(--text-muted);
+}
+[class^="username_"]::after {
+    content: ">";
+    color: var(--text-muted);
+}
+
+[class^="username_"] {
+    display: inline !important;
+    font-weight: bold !important;
+}
+
+/* Timestamps */
+[class^="timestamp_"] {
+    color: #555555 !important;
+    font-size: 0.85rem !important;
+}
+
+/* Chat Input Box */
+[class^="channelTextArea_"] {
+    background-color: var(--background-primary) !important;
+    border: 1px solid #333 !important;
+    margin-bottom: 10px;
+}
+
+[class^="inner_"] {
+    background-color: transparent !important;
+}
+
+/* Hide Unnecessary UI Bloat (Gifts, GIFs, Stickers) */
+[aria-label="Send a gift"],
+[aria-label="Open GIF picker"],
+[aria-label="Open sticker picker"] {
+    display: none !important;
+}
+
+/* High Contrast/Muted Sidebar Elements */
+[class^="channel_"] [class^="link_"] {
+    border-left: 3px solid transparent;
+}
+[class^="channel_"].selected_ [class^="link_"] {
+    background-color: #222 !important;
+    border-left: 3px solid #00ff00;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0a !important;
+}
+::-webkit-scrollbar-thumb {
+    background: #333 !important;
+}
