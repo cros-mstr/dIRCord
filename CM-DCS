@@ -1,10 +1,13 @@
 /**
- * @name CM-DCS (CrosMaster - Discord Chat System)
- * @description Bring CLI Magic to your discord client!
+ * @name IRClassiCord
+ * @description Bring IRC Magic to your discord client!
  * @author cros-mstr
  * @version 1.0.0
  */
 /* TO ADD THIS: PRESS THE RAW BUTTON ON THE TOP RIGHT AND COPY THE LINK */
+
+/* I highly encourage you to edit this theme! Comments are included for your convenience. HEX Codes work using RGB values, #RRGGBB */
+
 /* Import a clean monospace font */
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Source+Code+Pro:wght@400;700&display=swap');
 
@@ -20,8 +23,7 @@
     --background-tertiary: #000000;
     --background-floating: #000000;
     
-    /* Force all text variables to green shades */
-    --text-normal: #00ff00;
+    /* Global Green Terminal Accents */
     --text-muted: #00aa00;
     --text-link: #00ff55;
     --header-primary: #00ff00;
@@ -31,15 +33,18 @@
     --interactive-active: #00ff00;
     --interactive-muted: #004400;
     --channels-default: #00cc00;
-    
     --channeltextarea-background: #000000;
+
+    /* TOGGLE OPTIONS: Change these to #00ff00 to go full monochrome green again */
+    --chat-text-color: #ffffff; 
+    --chat-timestamp-color: #888888;
 }
 
 /* Base Theme Reset */
 * {
     font-family: var(--font-primary) !important;
     border-radius: 0px !important; /* IRC is sharp and square */
-    color: #00ff00 !important; /* Global fallback override to force green text everywhere */
+    color: #00ff00; /* Sidebar/UI default */
     background-color: transparent !important; /* Allows pitch black layers to inherit globally */
     box-shadow: none !important;
 }
@@ -79,6 +84,12 @@ html,
     background: #000000 !important;
 }
 
+/* Force chat messages/text to follow the toggle configuration color */
+[class^="messageContent_"], 
+[class^="messageContent_"] * {
+    color: var(--chat-text-color) !important;
+}
+
 /* Format Username and Message Inline */
 [class^="contents_"] {
     display: inline-block;
@@ -90,25 +101,28 @@ html,
     margin-right: 5px;
 }
 
-/* Wrap username in brackets like <User> */
+/* Wrap username in brackets like <User> and default them to muted grey/green */
 [class^="username_"]::before {
     content: "<";
-    color: #00aa00 !important;
+    color: #555555 !important;
+    font-weight: normal;
 }
 [class^="username_"]::after {
     content: ">";
-    color: #00aa00 !important;
+    color: #555555 !important;
+    font-weight: normal;
 }
 
+/* Allows unique role colors per person to display natively */
 [class^="username_"] {
     display: inline !important;
     font-weight: bold !important;
-    color: #00ff00 !important;
+    color: inherit !important; 
 }
 
-/* Timestamps */
+/* Timestamps option */
 [class^="timestamp_"] {
-    color: #00aa00 !important;
+    color: var(--chat-timestamp-color) !important;
     font-size: 0.85rem !important;
 }
 
@@ -134,6 +148,11 @@ html,
 [class^="inner_"] {
     background-color: #000000 !important;
     padding-left: 10px !important; /* Standard IRC padding for neat text alignment */
+}
+
+/* User typing input text follows the main text option color */
+[class^="textArea_"] [class^="markup_"] {
+    color: var(--chat-text-color) !important;
 }
 
 /* Placeholder text color inside the input box */
