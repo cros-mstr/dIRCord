@@ -74,15 +74,38 @@
     font-size: 0.85rem !important;
 }
 
-/* Chat Input Box */
+/* Chat Input Box & Container Structure */
+[class^="form_"] {
+    padding: 0px !important; /* Removes padding around the entire bottom input area */
+    margin: 0px !important;
+}
+
 [class^="channelTextArea_"] {
     background-color: var(--background-primary) !important;
-    border: 1px solid #333 !important;
-    margin-bottom: 10px;
+    border-top: 1px solid #333 !important; /* Top border separating chat window from text entry */
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    margin-bottom: 0px !important; /* Flushes box to the absolute bottom */
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    width: 100% !important;
 }
 
 [class^="inner_"] {
     background-color: transparent !important;
+    padding-left: 10px !important; /* Standard IRC padding for neat text alignment */
+}
+
+/* User Profile Container (Bottom Left) */
+[class^="panels_"] {
+    border-top: 1px solid #333 !important; /* Divider matching the chat text box */
+    background-color: var(--background-secondary) !important;
+}
+
+[class^="container_"][class*="panels_"] {
+    margin: 0px !important;
+    padding: 0px 8px !important; /* Tightens padding to flush with the sidebar walls */
 }
 
 /* Hide Unnecessary UI Bloat (Gifts, GIFs, Stickers) */
